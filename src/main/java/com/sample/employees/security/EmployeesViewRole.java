@@ -17,7 +17,8 @@ public interface EmployeesViewRole {
     @ScreenPolicy(screenIds = "Employee.browse")
     void screens();
 
-    @EntityAttributePolicy(entityClass = Employee.class, attributes = "*", action = EntityAttributePolicyAction.VIEW)
+    @EntityAttributePolicy(entityClass = Employee.class, attributes = {"id", "firstName", "lastName", "email", "birthDate", "department"}, action = EntityAttributePolicyAction.VIEW)
     @EntityPolicy(entityClass = Employee.class, actions = EntityPolicyAction.READ)
     void employee();
+
 }

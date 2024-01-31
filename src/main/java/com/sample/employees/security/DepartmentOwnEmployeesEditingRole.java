@@ -2,9 +2,7 @@ package com.sample.employees.security;
 
 import com.sample.employees.entity.Department;
 import com.sample.employees.entity.Employee;
-import com.sample.employees.entity.User;
 import io.jmix.core.DataManager;
-import io.jmix.core.security.CurrentAuthentication;
 import io.jmix.security.model.RowLevelBiPredicate;
 import io.jmix.security.model.RowLevelPolicyAction;
 import io.jmix.security.role.annotation.PredicateRowLevelPolicy;
@@ -21,7 +19,6 @@ public interface DepartmentOwnEmployeesEditingRole {
     default RowLevelBiPredicate<Employee, ApplicationContext> employeePredicate() {
 
         return (employee, applicationContext) -> {
-            User currentUser = (User) applicationContext.getBean(CurrentAuthentication.class).getUser();
             DataManager dataManager = applicationContext.getBean(DataManager.class);
             List<Department> departments = dataManager.load(Department.class)
                     .query("select u.department from User u where u.id = :current_user_id")
