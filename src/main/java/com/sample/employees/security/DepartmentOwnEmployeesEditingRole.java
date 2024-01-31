@@ -15,7 +15,7 @@ import java.util.List;
 public interface DepartmentOwnEmployeesEditingRole {
     String CODE = "department-own-employees-editing-role";
 
-    @PredicateRowLevelPolicy(entityClass = Employee.class, actions = {RowLevelPolicyAction.READ, RowLevelPolicyAction.UPDATE})
+    @PredicateRowLevelPolicy(entityClass = Employee.class, actions = {RowLevelPolicyAction.UPDATE, RowLevelPolicyAction.DELETE})
     default RowLevelBiPredicate<Employee, ApplicationContext> employeePredicate() {
 
         return (employee, applicationContext) -> {

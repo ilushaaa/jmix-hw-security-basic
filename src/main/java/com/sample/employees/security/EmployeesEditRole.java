@@ -18,12 +18,12 @@ public interface EmployeesEditRole {
     @ScreenPolicy(screenIds = {"Employee.browse", "Employee.edit"})
     void screens();
 
-    @EntityAttributePolicy(entityClass = Employee.class, attributes = "department", action = EntityAttributePolicyAction.VIEW)
-    @EntityAttributePolicy(entityClass = Employee.class, attributes = {"id", "firstName", "lastName", "email", "birthDate"}, action = EntityAttributePolicyAction.MODIFY)
-    @EntityPolicy(entityClass = Employee.class, actions = EntityPolicyAction.ALL)
-    void employee();
-
     @EntityAttributePolicy(entityClass = Department.class, attributes = "*", action = EntityAttributePolicyAction.VIEW)
     @EntityPolicy(entityClass = Department.class, actions = EntityPolicyAction.READ)
     void department();
+
+    @EntityAttributePolicy(entityClass = Employee.class, attributes = "department", action = EntityAttributePolicyAction.VIEW)
+    @EntityAttributePolicy(entityClass = Employee.class, attributes = {"id", "firstName", "lastName", "email", "birthDate"}, action = EntityAttributePolicyAction.MODIFY)
+    @EntityPolicy(entityClass = Employee.class, actions = {EntityPolicyAction.READ, EntityPolicyAction.UPDATE, EntityPolicyAction.DELETE})
+    void employee();
 }
